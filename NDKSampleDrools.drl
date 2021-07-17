@@ -1,0 +1,34 @@
+package com.sample
+
+import java.util.HashMap;
+
+rule "Rule1"
+ruleflow-group "rule1"
+no-loop
+    when
+    
+        responseMap : HashMap(!responseMap.containsKey("ExceptionMessage"));
+    then
+        responseMap.put("Message1", "Hello NDK It is working fine" );
+	update(responseMap)
+end
+
+rule "Rule2"
+ruleflow-group "rule2"
+no-loop
+    when
+        responseMap : HashMap(!responseMap.containsKey("ExceptionMessage"))
+    then
+        responseMap.put("Message2", "We did it" );
+	update(responseMap)
+end
+
+rule "Rule3"
+ruleflow-group "rule3"
+no-loop
+    when
+        responseMap : HashMap(!responseMap.containsKey("ExceptionMessage"))
+    then
+        responseMap.put("Message3", "Bye Bye" );
+	update(responseMap)
+end
